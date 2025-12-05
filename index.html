@@ -1,208 +1,278 @@
-<html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zihao Fan - Personal Website</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#1a1a1a',
-                        secondary: '#666666',
-                        accent: '#3b82f6',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                    },
-                }
-            }
+    <title>Zihao Fan | 范梓豪</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        /* Language switching logic */
+        .lang-zh { display: none; }
+        body.zh .lang-en { display: none; }
+        body.zh .lang-zh { display: inline-block; }
+        
+        /* Block level overrides */
+        body.zh div.lang-zh, body.zh p.lang-zh, body.zh h1.lang-zh, body.zh h2.lang-zh, body.zh h3.lang-zh, body.zh span.lang-zh.block-display { display: block; }
+        
+        /* Minimalist specific tweaks */
+        ::selection {
+            background-color: #000;
+            color: #fff;
         }
-    </script>
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .text-balance {
-                text-wrap: balance;
-            }
-            .section-fade {
-                opacity: 0;
-                transform: translateY(40px);
-                transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-            }
-            .section-visible {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            /* 为不同部分设置不同的延迟，创造层次感 */
-            .delay-100 { transition-delay: 100ms; }
-            .delay-200 { transition-delay: 200ms; }
-            .delay-300 { transition-delay: 300ms; }
+        
+        .wechat-qr {
+            display: none;
+        }
+        .wechat-container:hover .wechat-qr {
+            display: block;
         }
     </style>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
 </head>
-<body class="bg-white text-primary font-sans antialiased">
-    <!-- Header Section -->
-    <header class="container mx-auto px-4 md:px-8 py-12 md:py-20">
-        <div class="flex flex-col md:flex-row items-start justify-between gap-8">
-            <!-- 个人信息区域 -->
-            <div class="max-w-2xl" id="info-container">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">Zihao Fan</h1>
-                <p class="text-lg md:text-xl text-secondary mb-2 leading-relaxed">Second-year undergraduate student</p>
-                <p class="text-lg md:text-xl text-secondary mb-2 leading-relaxed">Shenzhen University</p>
-                <p class="text-lg md:text-xl text-secondary mb-2 leading-relaxed">School of Computer Science and Software Engineering (CSSE)</p>
-                <p class="text-lg md:text-xl text-secondary mb-6 leading-relaxed">Specializing in deep learning research</p>
+<body class="bg-white text-gray-900 font-sans antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-sm border-b border-gray-100 z-50 top-0">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="flex justify-between h-16 items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0 font-bold text-xl tracking-tight">
+                    <a href="#" class="text-black no-underline">
+                        <span class="lang-en">Zihao Fan</span>
+                        <span class="lang-zh">范梓豪</span>
+                    </a>
+                </div>
                 
-                <div class="flex flex-wrap items-center gap-6">
-                    <a href="mailto:fanzh2006@gmail.com" class="text-secondary hover:text-accent transition-colors flex items-center gap-2">
-                        <i class="fa fa-envelope-o"></i>
-                        <span>fanzh2006@gmail.com</span>
-                    </a>
-                    <a href="https://github.com" target="_blank" class="text-secondary hover:text-accent transition-colors flex items-center gap-2">
-                        <i class="fa fa-github"></i>
-                        <span>GitHub</span>
-                    </a>
-                    <a href="#" class="text-secondary hover:text-accent transition-colors flex items-center gap-2">
-                        <i class="fa fa-weixin"></i>
-                        <span>870372899</span>
-                    </a>
-                    <a href="tel:+8618814463113" class="text-secondary hover:text-accent transition-colors flex items-center gap-2">
-                        <i class="fa fa-phone"></i>
-                        <span>18814463113</span>
-                    </a>
-                </div>
-            </div>
-            
-            <!-- 头像区域 -->
-            <div class="w-40 h-auto md:w-48 md:h-auto rounded-full overflow-hidden border-2 border-gray-100 shadow-sm self-start mt-[2px]">
-                <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/840115cc77234efc892bde37c85a5576~tplv-a9rns2rl98-image.image?rcl=20250906171530F547E5367CAC67901CF9&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1757754930&amp;x-signature=2B2enZWAId0iFzTliepXs4FscN8%3D" alt="Zihao Fan profile picture" class="w-full h-full object-cover">
-            </div>
-        </div>
-    </header>
-
-    <!-- Projects Section -->
-    <section id="projects" class="container mx-auto px-4 md:px-8 py-8 md:py-16 section-fade">
-        <h2 class="text-2xl md:text-3xl font-bold mb-8 pb-2 border-b border-gray-100">GitHub Projects</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <!-- Project 1 -->
-            <div class="bg-gray-50 p-6 rounded-lg hover:shadow-md transition-shadow section-fade delay-100">
-                <h3 class="text-xl font-semibold mb-2">Project 1</h3>
-                <a href="#" class="text-accent hover:underline flex items-center gap-1">
-                    <span>View on GitHub</span>
-                    <i class="fa fa-external-link text-xs"></i>
-                </a>
-            </div>
-            
-            <!-- Project 2 -->
-            <div class="bg-gray-50 p-6 rounded-lg hover:shadow-md transition-shadow section-fade delay-200">
-                <h3 class="text-xl font-semibold mb-2">Project 2</h3>
-                <a href="#" class="text-accent hover:underline flex items-center gap-1">
-                    <span>View on GitHub</span>
-                    <i class="fa fa-external-link text-xs"></i>
-                </a>
-            </div>
-            
-            <!-- Project 3 -->
-            <div class="bg-gray-50 p-6 rounded-lg hover:shadow-md transition-shadow section-fade delay-100">
-                <h3 class="text-xl font-semibold mb-2">Project 3</h3>
-                <a href="#" class="text-accent hover:underline flex items-center gap-1">
-                    <span>View on GitHub</span>
-                    <i class="fa fa-external-link text-xs"></i>
-                </a>
-            </div>
-            
-            <!-- Project 4 -->
-            <div class="bg-gray-50 p-6 rounded-lg hover:shadow-md transition-shadow section-fade delay-200">
-                <h3 class="text-xl font-semibold mb-2">Project 4</h3>
-                <a href="#" class="text-accent hover:underline flex items-center gap-1">
-                    <span>View on GitHub</span>
-                    <i class="fa fa-external-link text-xs"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Research Experience Section -->
-    <section id="research" class="container mx-auto px-4 md:px-8 py-8 md:py-16 section-fade">
-        <h2 class="text-2xl md:text-3xl font-bold mb-8 pb-2 border-b border-gray-100">Research Experience</h2>
-        <div class="space-y-10">
-            <!-- Research 1 -->
-            <div class="flex flex-col md:flex-row gap-6 section-fade delay-100">
-                <div class="md:w-1/4 text-secondary">
-                    <p>2024 - Present</p>
-                    <p class="font-medium text-primary mt-1">Shenzhen University</p>
-                </div>
-                <div class="md:w-3/4">
-                    <h3 class="text-xl font-semibold mb-2">Student Researcher</h3>
-                    <p class="mb-3">Working with Professor Shen Jiangrong on natural language processing research.</p>
-                    <p class="text-secondary">Focus: Exploring various NLP techniques and applications</p>
-                    <p class="text-accent mt-2">A paper in coming</p>
+                <!-- Right Side -->
+                <div class="flex items-center gap-6 text-sm font-medium">
+                    <div class="hidden sm:flex gap-6 text-gray-600">
+                        <a href="#projects" class="hover:text-black transition-colors">
+                            <span class="lang-en">Projects</span>
+                            <span class="lang-zh">项目</span>
+                        </a>
+                        <a href="#blog" class="hover:text-black transition-colors">
+                            <span class="lang-en">Blog</span>
+                            <span class="lang-zh">博客</span>
+                        </a>
+                        <a href="#about" class="hover:text-black transition-colors">
+                            <span class="lang-en">About</span>
+                            <span class="lang-zh">关于</span>
+                        </a>
+                    </div>
+                    <button id="lang-toggle" class="px-3 py-1 rounded border border-gray-200 hover:bg-gray-50 hover:border-gray-300 text-xs transition-all">
+                        <span class="lang-en">中文</span>
+                        <span class="lang-zh">EN</span>
+                    </button>
                 </div>
             </div>
         </div>
-    </section>
+    </nav>
 
-    <!-- Publications Section -->
-    <section id="publications" class="container mx-auto px-4 md:px-8 py-8 md:py-16 section-fade">
-        <h2 class="text-2xl md:text-3xl font-bold mb-8 pb-2 border-b border-gray-100">Publications</h2>
-        <!-- No publications added as requested -->
-    </section>
+    <!-- Main Content Container -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 pt-32 pb-20 space-y-24">
+
+        <!-- Hero Section -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
+            <div class="md:col-span-2 space-y-6">
+                <div class="inline-block px-3 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded-full">
+                    <span class="lang-en">Shenzhen University</span>
+                    <span class="lang-zh">深圳大学</span>
+                </div>
+                <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-black">
+                    <span class="lang-en">Exploring Intelligence <br> in Machines.</span>
+                    <span class="lang-zh">探索机器智能的边界。</span>
+                </h1>
+                <p class="text-lg text-gray-600 leading-relaxed max-w-xl">
+                    <span class="lang-en">
+                        I'm <strong>Zihao Fan</strong>, a sophomore at the College of Computer Science and Software Engineering. My research currently focuses on <strong>Multimodal Large Models</strong>, building on a foundation of Deep Learning and Reinforcement Learning.
+                    </span>
+                    <span class="lang-zh">
+                        我是<strong>范梓豪</strong>，深圳大学计算机与软件学院大二学生。在深度学习与强化学习的基础上，我目前主要致力于<strong>多模态大模型</strong>的研究。
+                    </span>
+                </p>
+                <div class="flex gap-4 pt-2">
+                    <a href="#contact" class="px-6 py-2.5 bg-black text-white text-sm font-medium rounded hover:bg-gray-800 transition-colors">
+                        <span class="lang-en">Contact Me</span>
+                        <span class="lang-zh">联系我</span>
+                    </a>
+                    <a href="mailto:fanzh2006@gmail.com" class="px-6 py-2.5 border border-gray-200 text-gray-700 text-sm font-medium rounded hover:bg-gray-50 transition-colors">
+                        Email
+                    </a>
+                </div>
+            </div>
+            <!-- Avatar / Graphic -->
+            <div class="md:col-span-1 flex justify-center md:justify-end">
+                <div class="w-48 h-48 bg-gray-100 rounded-full flex items-center justify-center border border-gray-200">
+                    <span class="text-4xl font-serif text-gray-300">ZF</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Interests -->
+        <section>
+            <h2 class="text-2xl font-bold mb-8 flex items-center gap-3">
+                <span class="w-1 h-6 bg-black block"></span>
+                <span class="lang-en">Research Interests</span>
+                <span class="lang-zh">研究兴趣</span>
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div class="p-6 bg-gray-50 rounded border border-gray-100 hover:border-gray-300 transition-colors">
+                    <h3 class="font-bold text-lg mb-2">
+                        <span class="lang-en">Deep Learning</span>
+                        <span class="lang-zh">深度学习</span>
+                    </h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        <span class="lang-en">Foundational architectures and optimization techniques.</span>
+                        <span class="lang-zh">基础架构与优化技术研究。</span>
+                    </p>
+                </div>
+                <div class="p-6 bg-gray-50 rounded border border-gray-100 hover:border-gray-300 transition-colors">
+                    <h3 class="font-bold text-lg mb-2">
+                        <span class="lang-en">Reinforcement Learning</span>
+                        <span class="lang-zh">强化学习</span>
+                    </h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        <span class="lang-en">Decision making and agent-environment interaction.</span>
+                        <span class="lang-zh">智能决策与环境交互机制。</span>
+                    </p>
+                </div>
+                <div class="p-6 bg-black text-white rounded border border-black">
+                    <h3 class="font-bold text-lg mb-2">
+                        <span class="lang-en">Multimodal LLMs</span>
+                        <span class="lang-zh">多模态大模型</span>
+                    </h3>
+                    <p class="text-sm text-gray-300 leading-relaxed">
+                        <span class="lang-en">Current Focus: Vision-Language integration and reasoning.</span>
+                        <span class="lang-zh">当前重点：视觉-语言融合与推理增强。</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience">
+            <h2 class="text-2xl font-bold mb-8 flex items-center gap-3">
+                <span class="w-1 h-6 bg-black block"></span>
+                <span class="lang-en">Experience</span>
+                <span class="lang-zh">经历</span>
+            </h2>
+            <div class="border-l-2 border-gray-100 pl-6 space-y-8">
+                <div class="relative">
+                    <span class="absolute -left-[31px] top-1.5 w-3 h-3 bg-black rounded-full border-2 border-white ring-1 ring-gray-200"></span>
+                    <div class="mb-1 text-xs text-gray-400 font-mono">
+                        <span class="lang-en">Nov 2023 - Present</span>
+                        <span class="lang-zh">2023年11月 - 至今</span>
+                    </div>
+                    <h3 class="text-lg font-bold">
+                        <span class="lang-en">Research Student</span>
+                        <span class="lang-zh">科研实习</span>
+                    </h3>
+                    <div class="text-sm text-gray-600 mb-2">
+                        <span class="lang-en">College of Computer Science and Software Engineering, Shenzhen University</span>
+                        <span class="lang-zh">深圳大学计算机与软件学院</span>
+                    </div>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        <span class="lang-en">Advised by Prof. Hao Liao. Conducting research on Multimodal Large Models.</span>
+                        <span class="lang-zh">师从廖好老师。主要进行多模态大模型方向的科研工作。</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2 class="text-2xl font-bold mb-8 flex items-center gap-3">
+                <span class="w-1 h-6 bg-black block"></span>
+                <span class="lang-en">Selected Projects</span>
+                <span class="lang-zh">精选项目</span>
+            </h2>
+            <p class="text-gray-500 italic text-sm">
+                <span class="lang-en">Details to be updated...</span>
+                <span class="lang-zh">项目详情更新中...</span>
+            </p>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog">
+            <h2 class="text-2xl font-bold mb-8 flex items-center gap-3">
+                <span class="w-1 h-6 bg-black block"></span>
+                <span class="lang-en">Blog</span>
+                <span class="lang-zh">博客</span>
+            </h2>
+            <p class="text-gray-500 italic text-sm">
+                <span class="lang-en">Articles to be updated...</span>
+                <span class="lang-zh">文章更新中...</span>
+            </p>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="bg-gray-50 p-8 rounded-lg">
+            <h2 class="text-xl font-bold mb-4 text-black">
+                <span class="lang-en">About Me</span>
+                <span class="lang-zh">关于我</span>
+            </h2>
+            <div class="prose prose-slate prose-sm max-w-none text-gray-600">
+                <p class="lang-en mb-4">
+                    My academic journey is driven by a curiosity to understand intelligence itself. I started with the fundamentals of Deep Learning, moved towards the dynamic world of Reinforcement Learning, and I am currently dedicating my research efforts to Multimodal Large Models.
+                </p>
+                <p class="lang-zh mb-4">
+                    我的学术探索源于对“智能”本质的好奇。我从深度学习的基础理论起步，深入探索了强化学习的动态世界，目前正致力于多模态大模型的研究。
+                </p>
+                <p class="italic border-l-2 border-gray-300 pl-4">
+                    <span class="lang-en">"Passionate about bridging the gap between theoretical AI and practical applications."</span>
+                    <span class="lang-zh">“热衷于消除人工智能理论与实际应用之间的鸿沟。”</span>
+                </p>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="container mx-auto px-4 md:px-8 py-8 border-t border-gray-100 mt-12 section-fade">
-        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="text-secondary text-sm">© 2024 Zihao Fan. All rights reserved.</p>
-            <div class="flex gap-6">
-                <a href="mailto:fanzh2006@gmail.com" class="text-secondary hover:text-accent transition-colors">
-                    <i class="fa fa-envelope-o"></i>
-                </a>
-                <a href="https://github.com" target="_blank" class="text-secondary hover:text-accent transition-colors">
-                    <i class="fa fa-github"></i>
-                </a>
-                <a href="#" class="text-secondary hover:text-accent transition-colors">
-                    <i class="fa fa-weixin"></i>
-                </a>
-                <a href="tel:+8618814463113" class="text-secondary hover:text-accent transition-colors">
-                    <i class="fa fa-phone"></i>
-                </a>
+    <footer id="contact" class="border-t border-gray-100 py-12 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+                <div>
+                    <h2 class="text-lg font-bold mb-1">Zihao Fan</h2>
+                    <p class="text-sm text-gray-500">Shenzhen University</p>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-6 sm:gap-12 text-sm">
+                    <!-- Email -->
+                    <div class="flex items-center gap-2">
+                        <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        <a href="mailto:fanzh2006@gmail.com" class="text-gray-600 hover:text-black transition-colors">fanzh2006@gmail.com</a>
+                    </div>
+
+                    <!-- WeChat -->
+                    <div class="flex items-center gap-2 relative wechat-container cursor-help">
+                        <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                        <span class="text-gray-600 hover:text-black transition-colors">WeChat: 18814463113</span>
+                        <!-- Simple tooltip text for clarity -->
+                        <div class="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 px-2 py-1 bg-black text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity">
+                            Add me on WeChat
+                        </div>
+                    </div>
+                    
+                    <!-- GitHub -->
+                    <div class="flex items-center gap-2">
+                        <svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
+                        <a href="https://github.com/EZfan" class="text-gray-600 hover:text-black transition-colors">Github</a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 text-center md:text-left text-xs text-gray-400">
+                &copy; 2024 Zihao Fan.
             </div>
         </div>
     </footer>
 
     <script>
-        // 增强版滚动滑入效果
-        document.addEventListener('DOMContentLoaded', () => {
-            // 选择所有需要添加动画的元素
-            const fadeElements = document.querySelectorAll('.section-fade');
-            
-            // 配置观察器选项
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.15 // 元素15%可见时触发
-            };
-            
-            // 创建交叉观察器实例
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // 元素进入视口，添加可见类
-                        entry.target.classList.add('section-visible');
-                        // 停止观察已显示的元素
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-            
-            // 观察所有元素
-            fadeElements.forEach(element => {
-                observer.observe(element);
-            });
+        const toggleBtn = document.getElementById('lang-toggle');
+        const body = document.body;
+
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('zh');
+            const isZh = body.classList.contains('zh');
+            document.documentElement.lang = isZh ? 'zh-CN' : 'en';
         });
     </script>
-
-
-</body></html>
+</body>
+</html>
